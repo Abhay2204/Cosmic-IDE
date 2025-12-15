@@ -1,0 +1,26 @@
+{
+    "folders": [
+        {
+            "name": "Cosmic IDE",
+            "path": "."
+        }
+    ],
+    "settings": {
+        "terminal.integrated.cwd": "${workspaceFolder}",
+        "files.defaultLanguage": "typescript",
+        "terminal.integrated.defaultProfile.windows": "PowerShell",
+        "workbench.startupEditor": "welcomePageInEmptyWorkbench",
+        "python.defaultInterpreterPath": "python",
+        "python.terminal.executeInFileDir": false,
+        "python.terminal.launchArgs": [],
+        "terminal.integrated.shellIntegration.enabled": true
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-python.python",
+            "ms-vscode.vscode-typescript-next",
+            "bradlc.vscode-tailwindcss",
+            "esbenp.prettier-vscode"
+        ]
+    }
+}

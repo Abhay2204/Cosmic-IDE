@@ -1,0 +1,37 @@
+/* XTerm.js styles */
+.xterm {
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  font-size: 14px;
+  padding: 8px;
+  height: 100%;
+}
+
+.xterm-viewport {
+  background-color: #05050A !important;
+}
+
+.xterm-screen {
+  padding: 4px;
+}
+
+.xterm-cursor-layer {
+  z-index: 10;
+}
+
+/* Custom scrollbar for terminal */
+.xterm-viewport::-webkit-scrollbar {
+  width: 8px;
+}
+
+.xterm-viewport::-webkit-scrollbar-track {
+  background: #0A0A12;
+}
+
+.xterm-viewport::-webkit-scrollbar-thumb {
+  background: #2A2A40;
+  border-radius: 4px;
+}
+
+.xterm-viewport::-webkit-scrollbar-thumb:hover {
+  background: #3f3f5a;
+}

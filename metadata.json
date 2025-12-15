@@ -1,0 +1,5 @@
+{
+  "name": "Cosmic IDE",
+  "description": "A next-generation AI-native IDE inspired by Cursor, featuring intelligent agents, context-aware chat, and composer capabilities.",
+  "requestFramePermissions": []
+}

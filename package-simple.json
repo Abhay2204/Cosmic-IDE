@@ -1,0 +1,75 @@
+{
+  "name": "cosmic-ide",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Cosmic IDE - AI-Powered Desktop Code Editor",
+  "author": "Cosmic IDE Team",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p tsconfig.electron.json && vite build",
+    "electron:dev": "concurrently \"vite\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron:build": "npm run build && electron-builder",
+    "preview": "vite preview",
+    "setup-extensions": "node setup-extensions.js",
+    "install:basic": "npm install react react-dom lucide-react @google/genai",
+    "install:full": "npm install && npm run setup-extensions"
+  },
+  "dependencies": {
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "lucide-react": "^0.556.0",
+    "@google/genai": "^1.31.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "concurrently": "^8.2.2",
+    "wait-on": "^7.2.0"
+  },
+  "optionalDependencies": {
+    "@monaco-editor/react": "^4.6.0",
+    "monaco-editor": "^0.45.0",
+    "@xterm/xterm": "^5.5.0",
+    "@xterm/addon-fit": "^0.10.0",
+    "@xterm/addon-web-links": "^0.11.0",
+    "vscode-languageserver-protocol": "^3.17.5",
+    "vscode-languageserver-types": "^3.17.5",
+    "vscode-languageclient": "^9.0.1",
+    "vscode-uri": "^3.0.8",
+    "yauzl": "^3.0.0",
+    "semver": "^7.5.4",
+    "isomorphic-git": "^1.25.3",
+    "prismjs": "^1.29.0",
+    "@types/prismjs": "^1.26.3",
+    "@types/yauzl": "^2.10.3",
+    "@types/semver": "^7.5.6"
+  },
+  "build": {
+    "appId": "com.cosmic.ide",
+    "productName": "Cosmic IDE",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*"
+    ],
+    "win": {
+      "target": ["nsis"],
+      "icon": "build/icon.ico"
+    },
+    "mac": {
+      "target": ["dmg"],
+      "icon": "build/icon.icns"
+    },
+    "linux": {
+      "target": ["AppImage"],
+      "icon": "build/icon.png"
+    }
+  }
+}

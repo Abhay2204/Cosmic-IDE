@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSP disabled for Electron - will be handled by Electron's security -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' http://localhost:* http://127.0.0.1:* https://generativelanguage.googleapis.com https://openrouter.ai https://api.openai.com https://api.anthropic.com https://api.groq.com https://api.netmind.ai https://api.cohere.ai https://api.mistral.ai;"> -->
+    <title>Cosmic IDE</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cosmic: {
+                900: '#05050A',
+                800: '#0A0A12',
+                700: '#13131F',
+                600: '#1C1C2E',
+                500: '#2A2A40',
+                accent: '#6366f1', // Indigo 500
+                glow: '#818cf8',
+              }
+            },
+            fontFamily: {
+              mono: ['"JetBrains Mono"', 'Menlo', 'Monaco', 'Courier New', 'monospace'],
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+      body { 
+        background-color: #05050A; 
+        color: #e4e4e7; 
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', system-ui, sans-serif;
+      }
+      
+      /* Custom scrollbar for IDE feel */
+      ::-webkit-scrollbar { width: 10px; height: 10px; }
+      ::-webkit-scrollbar-track { background: #0A0A12; }
+      ::-webkit-scrollbar-thumb { background: #2A2A40; border-radius: 5px; }
+      ::-webkit-scrollbar-thumb:hover { background: #3f3f5a; }
+      
+      /* Editor styles */
+      .editor-line-number { 
+        user-select: none; 
+        color: #4b5563; 
+        text-align: right; 
+        padding-right: 1.5rem; 
+      }
+      
+      /* Loading animation */
+      .loading-spinner {
+        border: 2px solid #2A2A40;
+        border-top: 2px solid #6366f1;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Splash screen animations */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      
+      @keyframes fadeOut {
+        from { opacity: 1; transform: scale(1); }
+        to { opacity: 0; transform: scale(0.9); }
+      }
+      
+      .fade-in {
+        animation: fadeIn 0.5s ease-out;
+      }
+      
+      .fade-out {
+        animation: fadeOut 0.3s ease-in;
+      }
+    </style>
+    
+
+  </head>
+  <body>
+    <div id="root">
+      <!-- Loading fallback -->
+      <div class="h-screen w-screen flex items-center justify-center bg-cosmic-900">
+        <div class="text-center">
+          <div class="loading-spinner mx-auto mb-4"></div>
+          <p class="text-gray-400">Loading Cosmic IDE...</p>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

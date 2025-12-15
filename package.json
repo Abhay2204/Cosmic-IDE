@@ -1,0 +1,137 @@
+{
+  "name": "cosmic-ide",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Cosmic IDE - AI-Powered Desktop Code Editor",
+  "author": "Cosmic IDE Team",
+  "main": "dist-electron/main.js",
+  "scripts": {
+
+    "dev": "vite",
+    "build": "tsc -p tsconfig.electron.json && vite build",
+    "build:electron": "tsc -p tsconfig.electron.json",
+    "electron:dev": "node start-electron.js",
+    "desktop:simple": "node start-simple.js",
+    "electron:build": "npm run build && electron-builder",
+    "build:production": "node build-installer.js",
+    "build:win": "npm run build && electron-builder --win",
+    "build:portable": "npm run build && electron-builder --win portable",
+    "create-icons": "node create-icon.js",
+    "convert-icon": "node convert-icon.js",
+    "build-summary": "node build-summary.js",
+    "debug-build": "node debug-build.js",
+    "test-build": "node test-build.js",
+    "config:advanced": "node installer-config.js",
+    "build:advanced": "npm run build && npx electron-builder --config electron-builder-advanced.json --win",
+    "preview": "vite preview",
+    "setup-extensions": "node setup-extensions.js",
+    "fix": "node fix-install.js",
+    "diagnose": "node diagnose.js",
+    "test": "node test-functionality.js",
+    "test:production": "node test-production.js",
+    "install:basic": "npm install --no-optional",
+    "install:full": "npm install",
+    "start": "npm run dev",
+    "web": "node start-web.js",
+    "web:direct": "vite --host 0.0.0.0 --port 3000",
+    "desktop": "npm run electron:dev"
+  },
+  "dependencies": {
+    "@google/genai": "^1.32.0",
+    "@xterm/addon-fit": "^0.10.0",
+    "@xterm/addon-web-links": "^0.11.0",
+    "@xterm/xterm": "^5.5.0",
+    "lucide-react": "^0.556.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^3.7.2",
+    "@types/node": "^22.19.2",
+    "@types/react": "^18.3.27",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^5.1.2",
+    "concurrently": "^8.2.2",
+    "electron": "^28.3.3",
+    "electron-builder": "^24.13.3",
+    "typescript": "~5.8.2",
+    "vite": "^6.4.1",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.cosmic.ide",
+    "productName": "Cosmic IDE",
+    "copyright": "Copyright © 2024 Cosmic IDE Team",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "!**/*.ts",
+      "!**/*.map",
+      "!src/**/*",
+      "!electron/**/*",
+      "!node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "images/",
+        "to": "images/",
+        "filter": ["**/*"]
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64", "ia32"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+
+      "publisherName": "Cosmic IDE Team",
+      "verifyUpdateCodeSignature": false,
+      "artifactName": "${productName}-${version}-${arch}.${ext}",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Cosmic IDE",
+      "include": "build/installer.nsh",
+      "artifactName": "${productName}-Setup-${version}.${ext}",
+      "deleteAppDataOnUninstall": false
+    },
+    "portable": {
+      "artifactName": "${productName}-${version}-Portable.${ext}"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "build/icon.icns",
+      "category": "public.app-category.developer-tools"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "icon": "build/icon.png",
+      "category": "Development"
+    },
+    "compression": "maximum",
+    "removePackageScripts": true,
+    "nodeGypRebuild": false,
+    "buildDependenciesFromSource": false
+  }
+}

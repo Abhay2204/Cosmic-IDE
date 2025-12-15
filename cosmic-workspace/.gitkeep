@@ -1,0 +1,10 @@
+# Cosmic IDE Default Workspace
+
+This folder is your default workspace where all AI-generated projects will be created.
+
+## Structure:
+- `projects/` - AI-generated websites and applications
+- `scripts/` - Utility scripts and tools
+- `docs/` - Documentation and notes
+
+Your IDE files remain safe in the parent directory.
